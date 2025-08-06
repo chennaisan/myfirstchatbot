@@ -1,6 +1,6 @@
 import streamlit as st
 from streamlit_chat import message
-from langchain.chat_models import ChatOpenAI
+# from langchain.chat_models import ChatOpenAI
 from langchain_openai import ChatOpenAI
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.chains import ConversationChain
