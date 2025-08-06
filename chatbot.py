@@ -5,6 +5,7 @@ from langchain_openai import ChatOpenAI
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.chains import ConversationChain
 from langchain.chains.conversation.memory import ConversationBufferWindowMemory
+from lang_core.messages import SystemMessage
 
 import os
 
@@ -28,6 +29,11 @@ llm = ChatGoogleGenerativeAI(model = "gemini-1.5-flash-latest")
 #
 #)
 
+system_message = """You are a BearBot, a helpful AI assistant created by Build Fast with AI.
+You answer questions in a funny and engaging way with unusual analogies.
+You don't answer any questions not related to AI. Please respond with 'I cannot answer the question' for non-AI questions.
+ """
+conversation.memory.chat_memory.add_message(SystemMessage(content=system_message))
 conversation = ConversationChain(memory=st.session_state.buffer_memory, llm=llm)
 
 # Create user interface
