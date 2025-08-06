@@ -1,15 +1,15 @@
 import streamlit as st
 from streamlit_chat import message
 # from langchain.chat_models import ChatOpenAI
-from langchain_openai import ChatOpenAI
-# from langchain_google_genai import ChatGoogleGenerativeAI
+# from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.chains import ConversationChain
 from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 
 import os
 
 # os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
-
+os.environ['GOOGLE_API_KEY'] = st.secrets['GOOGLE_API_KEY']
 # Initialize session state variables
 if 'buffer_memory' not in st.session_state:
     st.session_state.buffer_memory = ConversationBufferWindowMemory(k=3, return_messages=True)
@@ -21,8 +21,8 @@ if "messages" not in st.session_state.keys(): # Initialize the chat message hist
 
 # Initialize ChatOpenAI and ConversationChain
 # llm = ChatOpenAI(model_name="gpt-4o-mini")
-# llm = ChatGoogleGenerativeAI(model = "gemini-pro")
-llm = ChatOpenAI(model = "meta-llama/Llama-3.2-90B-Vision-Instruct-Turbo",
+llm = ChatGoogleGenerativeAI(model = "gemini-pro")
+# llm = ChatOpenAI(model = "meta-llama/Llama-3.2-90B-Vision-Instruct-Turbo",
                       openai_api_key = st.secrets["TOGETHER_API_KEY"] , ## use your key
                       openai_api_base = "https://api.together.xyz/v1"
 
